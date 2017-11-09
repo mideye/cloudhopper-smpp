@@ -271,7 +271,7 @@ public abstract class Pdu {
 
     public void readOptionalParameters(ChannelBuffer buffer, PduTranscoderContext context) throws UnrecoverablePduException, RecoverablePduException {
         // if there is any data left, it's part of an optional parameter
-        while (buffer.readableBytes() > 4) { // a TLV is at least 4 bytes (tag+length)
+        while (buffer.readableBytes() > 3) { // a TLV is at least 4 bytes (tag+length)
             Tlv tlv = ChannelBufferUtil.readTlv(buffer);
             if (tlv.getTagName() == null) {
                 tlv.setTagName(context.lookupTlvTagName(tlv.getTag()));
